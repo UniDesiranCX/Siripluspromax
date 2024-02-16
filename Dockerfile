@@ -20,13 +20,13 @@ RUN apt-get update && apt-get install -y nginx
 #RUN apt-get install -y libnginx-mod-http-headers-more-filter
 
 # 设置 Nginx 配置
-#COPY nginx.conf /etc/nginx/nginx.conf
-#
-#CMD ["systemctl", "enable", "nginx"]
-#CMD ["systemctl", "stop", "nginx"]
+COPY nginx.conf /etc/nginx/nginx.conf
+
+CMD ["systemctl", "enable", "nginx"]
+CMD ["systemctl", "stop", "nginx"]
 
 # 暴露 Nginx 端口
-EXPOSE 8080
+EXPOSE 8000
 
 # 启动 FastAPI 应用和 Nginx
 CMD ["bash", "-c", "service nginx start && uvicorn main:app --host 0.0.0.0 --port 8080"]
